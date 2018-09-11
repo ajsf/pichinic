@@ -1,27 +1,44 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
+import { connect } from 'react-redux'
 
-const Header = props => (
-  <header id="header" className="alt">
-    <Link to="/" className="logo">
-      <span>
-        pic
-        <strong>HI</strong>
-        nic
-      </span>
-    </Link>
-    <nav>
-      <Link to="/cart" className="icon fa-shopping-cart">1</Link>
-
-      <a className="menu-link" onClick={props.onToggleMenu} href="javascript:;">
-        Menu
-      </a>
-    </nav>
-  </header>
-)
-
-Header.propTypes = {
-  onToggleMenu: React.PropTypes.func,
+const Header = props => {
+  const cartIcon =
+    props.cartQuantity > 0 ? (
+      <Link to="/cart" className="icon fa-shopping-cart">
+        {props.cartQuantity}
+      </Link>
+    ) : null
+  return (
+    <header id="header" className="alt">
+      <Link to="/" className="logo">
+        <span>
+          pic
+          <strong>HI</strong>
+          nic
+        </span>
+      </Link>
+      <nav>
+        {cartIcon}
+        <a
+          className="menu-link"
+          onClick={props.onToggleMenu}
+          href="javascript:;"
+        >
+          Menu
+        </a>
+      </nav>
+    </header>
+  )
 }
 
-export default Header
+const mapStateToProps = state => {
+  let cartQuantity = 0
+  if (state.location) cartQuantity++
+  if (state.food) cartQuantity++
+  if (state.drink) cartQuantity++
+  return {
+    cartQuantity,
+  }
+}
+export default connect(mapStateToProps)(Header)

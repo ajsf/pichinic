@@ -1,4 +1,5 @@
 import React from 'react'
+import Layout from '../components/layout'
 
 import { markdownQueryToObjects } from '../utils/ItemHelper'
 
@@ -9,12 +10,14 @@ const DrinksPage = props => {
   const drinks = markdownQueryToObjects(props.data)
 
   return (
-    <ShoppingPageComponent
-      title="Beverages"
-      text="Pick the perfect beverages to round out the experience."
-    >
-      <Beverages menu={drinks} />
-    </ShoppingPageComponent>
+    <Layout>
+      <ShoppingPageComponent
+        title="Beverages"
+        text="Pick the perfect beverages to round out the experience."
+      >
+        <Beverages menu={drinks} />
+      </ShoppingPageComponent>
+    </Layout>
   )
 }
 

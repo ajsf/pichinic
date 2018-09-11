@@ -1,4 +1,5 @@
 import React from 'react'
+import Layout from '../components/layout'
 
 import { markdownQueryToObjects } from '../utils/ItemHelper'
 
@@ -6,17 +7,17 @@ import FoodMenus from '../components/ShoppingPages/Food/FoodMenus'
 import ShoppingPageComponent from '../components/ShoppingPages/ShoppingPageComponent'
 
 const Food = props => {
-  console.log(props)
   const menus = markdownQueryToObjects(props.data)
 
-  console.log('MENUS', menus)
   return (
-    <ShoppingPageComponent
-      title="Food"
-      text="Select from our hand picked menus, or create a custom menu."
-    >
-      <FoodMenus menus={menus} />
-    </ShoppingPageComponent>
+    <Layout>
+      <ShoppingPageComponent
+        title="Food"
+        text="Select from our hand picked menus, or create a custom menu."
+      >
+        <FoodMenus menus={menus} />
+      </ShoppingPageComponent>
+    </Layout>
   )
 }
 

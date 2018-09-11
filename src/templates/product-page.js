@@ -1,5 +1,6 @@
 import React from 'react'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
+
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 
@@ -40,7 +41,7 @@ const ProductPageTemplate = props => {
           >
             <ul className="actions">
               <li>
-                <div onClick={props.history.goBack} className="button">
+                <div className="button">
                   Back
                 </div>
               </li>
