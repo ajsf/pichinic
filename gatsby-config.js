@@ -35,6 +35,10 @@ module.exports = {
         excerpt_separator: '<!-- end -->',
       },
     },
+    {
+      resolve: 'gatsby-plugin-create-client-paths',
+      options: { prefixes: ['/cart/*'] },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-helmet`,
