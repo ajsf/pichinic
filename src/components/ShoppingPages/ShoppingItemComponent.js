@@ -3,7 +3,6 @@ import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 
 const ShoppingItemComponent = props => {
-  console.log('ITEM', props)
   const { item, nextLink, itemName } = props
   return (
     <section>
@@ -29,7 +28,11 @@ const ShoppingItemComponent = props => {
               </Link>
             </li>
             <li>
-              <Link to={nextLink} className="button special icon fa-check">
+              <Link
+                to={nextLink}
+                onClick={props.select}
+                className="button special icon fa-check"
+              >
                 Select {itemName}
               </Link>
             </li>

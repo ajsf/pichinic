@@ -3,6 +3,9 @@ import React from 'react'
 import ShoppingCategoryContainer from '../ShoppingCategoryContainer'
 import ShoppingItemComponent from '../ShoppingItemComponent'
 
+import { connect } from 'react-redux'
+import * as actionCreators from '../../../state/actions/actionCreators'
+
 const Locations = props => {
   const { locations } = props
   return (
@@ -10,8 +13,9 @@ const Locations = props => {
       {locations.map(location => {
         return (
           <ShoppingItemComponent
+            select={() => props.selectLocation(location.name)}
             item={location}
-            key={location.name}
+            key={location.path}
             nextLink="/food"
             itemName="Location"
           />
@@ -20,5 +24,18 @@ const Locations = props => {
     </ShoppingCategoryContainer>
   )
 }
+const mapStateToProps = state => {
+  return { ...state }
+}
 
-export default Locations
+const mapDispatchToProps = dispatch => {
+  return {
+    selectLocation: location =>
+      dispatch(actionCreators.selectLocation(location)),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Locations)

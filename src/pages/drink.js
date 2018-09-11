@@ -17,6 +17,7 @@ const DrinksPage = props => {
     </ShoppingPageComponent>
   )
 }
+
 export default DrinksPage
 
 export const query = graphql`

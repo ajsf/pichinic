@@ -3,6 +3,9 @@ import React from 'react'
 import ShoppingCategoryContainer from '../ShoppingCategoryContainer'
 import ShoppingItemComponent from '../ShoppingItemComponent'
 
+import { connect } from 'react-redux'
+import * as actionCreators from '../../../state/actions/actionCreators'
+
 const Beverages = props => {
   const { menu } = props
   return (
@@ -10,8 +13,9 @@ const Beverages = props => {
       {menu.map(item => {
         return (
           <ShoppingItemComponent
+            select={() => props.addDrink(item.name)}
             item={item}
-            key={item.name}
+            key={item.path}
             nextLink="/cart"
             itemName="Beverage"
           />
@@ -21,4 +25,15 @@ const Beverages = props => {
   )
 }
 
-export default Beverages
+const mapStateToProps = state => {
+  return { ...state }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { addDrink: drink => dispatch(actionCreators.addDrinkItem(drink)) }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Beverages)
