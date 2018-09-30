@@ -30,7 +30,6 @@ exports.createPages = ({ actions, graphql }) => {
       Promise.reject(result.errors)
     }
 
-    // Create blog posts pages.
     result.data.allMarkdownRemark.edges.forEach(edge => {
       createPage({
         path: edge.node.fields.slug,
@@ -43,8 +42,8 @@ exports.createPages = ({ actions, graphql }) => {
   })
 }
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
   if (node.internal.type == 'MarkdownRemark') {
     const slug = createFilePath({ node, getNode })
     createNodeField({ node, name: 'slug', value: slug })

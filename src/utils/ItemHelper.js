@@ -1,3 +1,5 @@
+import { graphql } from 'gatsby'
+
 export const markdownShoppingItem = graphql`
   fragment ShoppingItem on MarkdownRemarkConnection {
     edges {

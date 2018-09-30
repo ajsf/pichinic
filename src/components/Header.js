@@ -3,6 +3,10 @@ import { Link } from 'gatsby'
 import { connect } from 'react-redux'
 
 const Header = props => {
+  const toggle = e => {
+    e.preventDefault()
+    props.onToggleMenu()
+  }
   const cartIcon =
     props.cartQuantity > 0 ? (
       <Link to="/cart" className="icon fa-shopping-cart">
@@ -20,11 +24,7 @@ const Header = props => {
       </Link>
       <nav>
         {cartIcon}
-        <a
-          className="menu-link"
-          onClick={props.onToggleMenu}
-          href="javascript:;"
-        >
+        <a className="menu-link" onClick={toggle} href="openMenu">
           Menu
         </a>
       </nav>

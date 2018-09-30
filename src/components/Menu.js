@@ -3,6 +3,10 @@ import { Link } from 'gatsby'
 import { connect } from 'react-redux'
 
 const Menu = props => {
+  const onLinkClick = e => {
+    e.preventDefault()
+    props.onToggleMenu()
+  }
   return (
     <nav id="menu">
       <div className="inner">
@@ -45,7 +49,7 @@ const Menu = props => {
           </li>
         </ul>
       </div>
-      <a className="close" onClick={props.onToggleMenu} href="javascript:;">
+      <a className="close" onClick={onLinkClick} href="closeMenu">
         Close
       </a>
     </nav>
