@@ -1,14 +1,15 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import Layout from '../components/layout'
 
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
+import Actions from '../components/ProductPages/Actions'
 
 const ProductPageTemplate = props => {
   const product = props.data.markdownRemark
-  console.log(product)
   const { title, image } = product.frontmatter
+
   return (
     <div>
       <Helmet>
@@ -40,16 +41,7 @@ const ProductPageTemplate = props => {
                 alignItems: 'center',
               }}
             >
-              <ul className="actions">
-                <li>
-                  <div className="button">Back</div>
-                </li>
-                <li>
-                  <Link to="/generic" className="button special icon fa-check">
-                    Select {props.itemName}
-                  </Link>
-                </li>
-              </ul>
+              <Actions />
             </div>
           </section>
         </div>

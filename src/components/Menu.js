@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import { connect } from 'react-redux'
+import { mapStateToCheckoutReadiness } from '../state/utils'
 
 const Menu = props => {
   const onLinkClick = e => {
@@ -57,28 +58,6 @@ const Menu = props => {
 }
 
 const mapStateToProps = state => {
-  const started = state.location || state.food || state.drink
-  const ready = state.location && state.food && state.drink
-  let continueButtonText = 'Get Started'
-  if (ready) {
-    continueButtonText = 'Checkout'
-  } else if (started) {
-    continueButtonText = 'Continue'
-  }
-
-  let nextLink = '/locations'
-  if (ready) {
-    nextLink = '/checkout'
-  } else if (started) {
-    if (state.location && state.food) {
-      nextLink = '/drink'
-    } else if (state.location) {
-      nextLink = '/food'
-    }
-  }
-  return {
-    continueButtonText,
-    nextLink,
-  }
+  return mapStateToCheckoutReadiness(state)
 }
 export default connect(mapStateToProps)(Menu)

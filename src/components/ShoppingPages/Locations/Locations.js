@@ -16,8 +16,7 @@ const Locations = props => {
             select={() => props.selectLocation(location.name)}
             item={location}
             key={location.path}
-            nextLink="/food"
-            itemName="Location"
+            itemCategory="Location"
           />
         )
       })}

@@ -16,8 +16,7 @@ const FoodMenus = props => {
             select={() => props.addFood(menu.name)}
             item={menu}
             key={menu.path}
-            nextLink="/drink"
-            itemName="Menu"
+            itemCategory="Menu"
           />
         )
       })}

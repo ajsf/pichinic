@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import Actions from './ShoppingCategoryActions'
 
 const ShoppingItemComponent = props => {
-  const { item, nextLink, itemName } = props
+  const { item, itemCategory } = props
   return (
     <section>
       <Link to={item.path} className="image">
@@ -21,22 +22,11 @@ const ShoppingItemComponent = props => {
             <h3>{item.name}</h3>
           </header>
           <p>{item.description}</p>
-          <ul className="actions">
-            <li>
-              <Link to={item.path} className="button">
-                More Info
-              </Link>
-            </li>
-            <li>
-              <Link
-                to={nextLink}
-                onClick={props.select}
-                className="button special icon fa-check"
-              >
-                Select {itemName}
-              </Link>
-            </li>
-          </ul>
+          <Actions
+            item={item}
+            itemCategory={itemCategory}
+            select={props.select}
+          />
         </div>
       </div>
     </section>

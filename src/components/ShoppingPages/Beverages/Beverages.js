@@ -16,8 +16,7 @@ const Beverages = props => {
             select={() => props.addDrink(item.name)}
             item={item}
             key={item.path}
-            nextLink="/cart"
-            itemName="Beverage"
+            itemCategory="Beverage"
           />
         )
       })}

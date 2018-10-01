@@ -9,6 +9,7 @@ import food from '../assets/images/food.jpg'
 import bottle from '../assets/images/bottle.jpg'
 import couple from '../assets/images/couple.jpg'
 import pic04 from '../assets/images/pic04.jpg'
+import BottomSection from '../components/HomePage/BottomSection'
 
 class HomeIndex extends React.Component {
   render() {
@@ -64,25 +65,7 @@ class HomeIndex extends React.Component {
                 <Link to="/locations" className="link primary" />
               </article>
             </section>
-            <section id="two">
-              <div className="inner">
-                <header className="major">
-                  <h2>Take Your Pick</h2>
-                </header>
-                <p>
-                  Pick a location, pick a menu, and tell us when and where to
-                  pick you up. We'll take care of the rest. For a memorable
-                  picnic in paradise, pick pic.HI.nic!
-                </p>
-                <ul className="actions">
-                  <li>
-                    <Link to="/locations" className="button next">
-                      Get Started
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </section>
+            <BottomSection />
           </div>
         </div>
       </Layout>
