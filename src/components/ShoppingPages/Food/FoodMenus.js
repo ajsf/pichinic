@@ -13,7 +13,7 @@ const FoodMenus = props => {
       {menus.map(menu => {
         return (
           <ShoppingItemComponent
-            select={() => props.addFood(menu.name)}
+            select={() => props.addFood(menu)}
             item={menu}
             key={menu.path}
             itemCategory="Menu"

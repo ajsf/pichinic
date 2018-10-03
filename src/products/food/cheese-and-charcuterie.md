@@ -1,6 +1,6 @@
 ---
 title: Cheese and Charcutterie Platter
-category: Food
+category: Menu
 path: "/cheese_charcutterie_platter/"
 image: "./cheese_platter.jpg"
 ---

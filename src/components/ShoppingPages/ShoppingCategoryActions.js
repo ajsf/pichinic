@@ -4,7 +4,7 @@ import { mapStateToCheckoutReadiness } from '../../state/utils'
 import { connect } from 'react-redux'
 
 const Actions = props => {
-  const { item, nextLink, itemCategory } = props
+  const { item, nextLink } = props
 
   return (
     <ul className="actions">
@@ -19,7 +19,7 @@ const Actions = props => {
           onClick={props.select}
           className="button special icon fa-check"
         >
-          Select {itemCategory}
+          Select {item.category}
         </Link>
       </li>
     </ul>
@@ -27,8 +27,9 @@ const Actions = props => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const { itemCategory } = ownProps
-  return mapStateToCheckoutReadiness(state, itemCategory)
+  const { category } = ownProps.item
+  console.log('SCA', category)
+  return mapStateToCheckoutReadiness(state, category)
 }
 
 export default connect(mapStateToProps)(Actions)

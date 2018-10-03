@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import { mapStateToCheckoutReadiness } from '../../state/utils'
 import { connect } from 'react-redux'
 
-const Actions = props => {
+const ProductPageActions = props => {
   const back = () => {
     window.history.back()
   }
@@ -23,8 +23,10 @@ const Actions = props => {
   )
 }
 
-const mapStateToProps = state => {
-  return mapStateToCheckoutReadiness(state)
+const mapStateToProps = (state, ownProps) => {
+  const category = ownProps.itemName
+
+  return mapStateToCheckoutReadiness(state, category)
 }
 
-export default connect(mapStateToProps)(Actions)
+export default connect(mapStateToProps)(ProductPageActions)

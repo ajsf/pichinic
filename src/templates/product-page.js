@@ -4,12 +4,12 @@ import Layout from '../components/layout'
 
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
-import Actions from '../components/ProductPages/Actions'
+import Actions from '../components/ProductPages/ProductPageActions'
 
 const ProductPageTemplate = props => {
   const product = props.data.markdownRemark
-  const { title, image } = product.frontmatter
-
+  const { title, image, category } = product.frontmatter
+  console.log('PP Template', props)
   return (
     <div>
       <Helmet>
@@ -41,7 +41,7 @@ const ProductPageTemplate = props => {
                 alignItems: 'center',
               }}
             >
-              <Actions />
+              <Actions itemName={category} />
             </div>
           </section>
         </div>
@@ -64,6 +64,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        category
         image {
           childImageSharp {
             sizes {

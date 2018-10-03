@@ -1,6 +1,6 @@
 ---
 title: Perrier Sparkling Water
-category: Drinks
+category: Beverage
 path: '/perrier/'
 image: './perrier.jpg'
 ---

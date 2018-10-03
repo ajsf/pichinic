@@ -13,7 +13,7 @@ const Beverages = props => {
       {menu.map(item => {
         return (
           <ShoppingItemComponent
-            select={() => props.addDrink(item.name)}
+            select={() => props.addDrink(item)}
             item={item}
             key={item.path}
             itemCategory="Beverage"

@@ -4,7 +4,8 @@ import Img from 'gatsby-image'
 import Actions from './ShoppingCategoryActions'
 
 const ShoppingItemComponent = props => {
-  const { item, itemCategory } = props
+  const { item } = props
+  console.log('SICOMP', item)
   return (
     <section>
       <Link to={item.path} className="image">
@@ -24,7 +25,6 @@ const ShoppingItemComponent = props => {
           <p>{item.description}</p>
           <Actions
             item={item}
-            itemCategory={itemCategory}
             select={props.select}
           />
         </div>

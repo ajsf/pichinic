@@ -1,6 +1,6 @@
 ---
 title: Kapiolani Park
-category: Locations
+category: Location
 path: '/kapiolani_park/'
 image: './kapiolani_park.jpg'
 ---

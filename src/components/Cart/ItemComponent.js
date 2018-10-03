@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 const ItemComponent = props => {
   console.log('CART', props)
   const itemContent = props.item ? (
-    <div style={{ marginBottom: 16, marginLeft: 24 }}>{props.item}</div>
+    <div style={{ marginBottom: 36, marginLeft: 24 }}>{props.item}</div>
   ) : (
     <Link className="button fit" to={props.link}>
       Please pick a {props.emptyName}.

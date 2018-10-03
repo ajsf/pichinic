@@ -10,6 +10,7 @@ export const markdownShoppingItem = graphql`
         excerpt
         frontmatter {
           title
+          category
           image {
             childImageSharp {
               sizes(maxWidth: 650, maxHeight: 350) {
@@ -24,7 +25,7 @@ export const markdownShoppingItem = graphql`
 `
 const mapItemQueryToItemObject = itemQuery => {
   const { excerpt, frontmatter, fields } = itemQuery.node
-  const { title, image } = frontmatter
+  const { title, image, category } = frontmatter
   const { slug } = fields
 
   return {
@@ -32,6 +33,7 @@ const mapItemQueryToItemObject = itemQuery => {
     description: excerpt,
     path: slug,
     imageSizes: image.childImageSharp.sizes,
+    category: category,
   }
 }
 

@@ -5,6 +5,7 @@ import { markdownQueryToObjects } from '../utils/ItemHelper'
 
 import Beverages from '../components/ShoppingPages/Beverages/Beverages'
 import ShoppingPageComponent from '../components/ShoppingPages/ShoppingPageComponent'
+import productCategories from '../products/productCategories'
 
 const DrinksPage = props => {
   const drinks = markdownQueryToObjects(props.data)
@@ -25,7 +26,7 @@ export default DrinksPage
 
 export const query = graphql`
   query DrinksQuery {
-    allMarkdownRemark(filter: { frontmatter: { category: { eq: "Drinks" } } }) {
+    allMarkdownRemark(filter: { frontmatter: { category: { eq: "Beverage" } } }) {
       ...ShoppingItem
     }
   }

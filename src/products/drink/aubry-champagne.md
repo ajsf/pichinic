@@ -1,6 +1,6 @@
 ---
 title: Aubry Champagne
-category: Drinks
+category: Beverage
 path: "/aubry_champagne/"
 image: "./aubry-champagne-brut-premier-cru.jpg"
 ---

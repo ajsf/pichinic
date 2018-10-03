@@ -26,7 +26,7 @@ export default Food
 
 export const query = graphql`
   query FoodQuery {
-    allMarkdownRemark(filter: { frontmatter: { category: { eq: "Food" } } }) {
+    allMarkdownRemark(filter: { frontmatter: { category: { eq: "Menu" } } }) {
       ...ShoppingItem
     }
   }

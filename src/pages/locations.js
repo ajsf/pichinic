@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Locations from '../components/ShoppingPages/Locations/Locations'
 import ShoppingPageComponent from '../components/ShoppingPages/ShoppingPageComponent'
 import { markdownQueryToObjects } from '../utils/ItemHelper'
+import products from '../products/productCategories'
 
 const LocationsPage = props => {
   console.log(props)
@@ -25,7 +26,7 @@ export default LocationsPage
 export const query = graphql`
   query LocationsQuery {
     allMarkdownRemark(
-      filter: { frontmatter: { category: { eq: "Locations" } } }
+      filter: { frontmatter: { category: { eq: "Location" } } }
     ) {
       ...ShoppingItem
     }

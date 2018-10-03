@@ -1,6 +1,6 @@
 ---
 title: Borgo San Leo Prosecco Brut
-category: Drinks
+category: Beverage
 image: "./BSL-Prosecco.jpg"
 ---
 
