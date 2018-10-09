@@ -2,7 +2,7 @@ import React from 'react'
 
 const ShoppingCartSectionContainer = props => {
   return (
-    <div style={{ flex: '1 0 45%', marginLeft: 16, maxWidth: 600, minWidth: 300 }}>
+    <div style={{ flex: '0 0 40%', minWidth: 250 }}>
       {props.children}
     </div>
   )

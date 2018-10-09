@@ -7,7 +7,6 @@ import { connect } from 'react-redux'
 import * as actionCreators from '../../../state/actions/actionCreators'
 const Locations = props => {
   const { locations } = props
-  console.log('LOCATIONS', locations)
   return (
     <ShoppingCategoryContainer>
       {locations.map(location => {

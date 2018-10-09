@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import ShoppingCartSectionContainer from './ShoppingCartSectionContainer'
+import PickupLocationSearch from './PickupLocationSearch'
 
 class DateAndTimeComponent extends Component {
   state = {
@@ -57,6 +58,7 @@ class DateAndTimeComponent extends Component {
         </div>
         <div style={{ marginBottom: 16 }}>
           <h4>Pickup Location</h4>
+          <PickupLocationSearch />
         </div>
       </ShoppingCartSectionContainer>
     )
