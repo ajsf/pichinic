@@ -1,3 +1,0 @@
-const getPlaceDetails = placeId => {
-    
-}

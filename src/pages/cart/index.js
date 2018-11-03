@@ -1,12 +1,13 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import Layout from '../../components/layout'
-import { connect } from 'react-redux'
 
-import ItemsComponent from '../../components/Cart/itemsComponent'
-import DateAndTimeComponent from '../../components/Cart/DateAndTimeComponent'
+import { Router, Link } from '@reach/router'
+
+import MainCart from '../../components/Cart/MainCart'
 
 import './react-datepicker.css'
+import PickupDetails from '../../components/Cart/PickupDetails'
 
 const Cart = props => {
   return (
@@ -22,17 +23,11 @@ const Cart = props => {
               <header className="major">
                 <h2>Cart</h2>
               </header>
-              <div
-                style={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  justifyContent: 'space-between',
-            
-                }}
-              >
-                <ItemsComponent />
-                <DateAndTimeComponent />
-              </div>
+
+              <Router>
+                <MainCart path="cart/" />
+                <PickupDetails path="cart/pickupdetails/" />
+              </Router>
             </div>
           </section>
         </div>
@@ -41,8 +36,4 @@ const Cart = props => {
   )
 }
 
-const mapStateToProps = state => {
-  const started = state.location || state.food || state.drink
-  return { started }
-}
-export default connect(mapStateToProps)(Cart)
+export default Cart

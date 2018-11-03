@@ -1,90 +1,59 @@
 import React from 'react'
-import PlacesAutocomplete, {
-  geocodeByAddress,
-  getLatLng,
-} from 'react-places-autocomplete'
+import LocationSearchInput from './LocationSearchInput'
+
+const extractAddressComponent = (addressComponents, componentName) =>
+  addressComponents.filter(c => c.types.includes(componentName))[0].long_name
 
 export default class PickupLocationSearch extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { address: '' }
+  constructor() {
+    super()
+    this.autocomplete = null
+    this.state = { address: null }
   }
 
-  handleChange = address => {
-    console.log('HANDLE CHANGE', address)
-    this.setState({ address })
+  initSearch = () => {
+    this.setInfowindowContent()
+    this.initAutocomplete()
   }
 
-  handleSelect = (address, placeId) => {
-    console.log('HANDLE SELECT', address, placeId)
+  setInfowindowContent = () => {
+    const infowindow = new window.google.maps.InfoWindow()
+    const infowindowContent = document.getElementById('infowindow-content')
+    infowindow.setContent(infowindowContent)
+  }
+
+  initAutocomplete = () => {
+    const input = document.getElementById('pac-input')
+    this.autocomplete = new window.google.maps.places.Autocomplete(input)
+    this.autocomplete.setOptions(this.createSearchOptions())
+    this.autocomplete.addListener('place_changed', this.fillInAddress)
+  }
+
+  createSearchOptions = () => {
+    const { maps } = window.google
+    const fields = ['address_components']
+    const southWest = new maps.LatLng(21.23, -158.29)
+    const northEast = new maps.LatLng(21.71, -157.644)
+    const bounds = new maps.LatLngBounds(southWest, northEast)
+    return { bounds, fields, strictBounds: true }
+  }
+
+  fillInAddress = () => {
+    const { address_components } = this.autocomplete.getPlace()
+    console.log('PLACE', address_components)
+    const streetNumber = extractAddressComponent(
+      address_components,
+      'street_number'
+    )
+    const streetName = extractAddressComponent(address_components, 'route')
+    const city = extractAddressComponent(address_components, 'locality')
+    const zipCode = extractAddressComponent(address_components, 'postal_code')
+    const address = streetNumber + ' ' + streetName + ' ' + city + ' ' + zipCode
+    console.log(address)
     this.setState({ address })
   }
 
   render() {
-    const searchOptions = {
-      location: new window.google.maps.LatLng(21.31, -157.85),
-      radius: 20000,
-    }
-    return (
-      <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        searchOptions={searchOptions}
-        onSelect={this.handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Enter a location or an address ...',
-                className: 'location-search-input',
-              })}
-            />
-            {suggestions.length > 0 && (
-              <div
-                style={{ marginTop: 8 }}
-                className="autocomplete-dropdown-container"
-              >
-                {loading && <div>Loading...</div>}
-                {suggestions.map(suggestion => {
-                  console.log('SUGGESTION', suggestion)
-                  const className = suggestion.active
-                    ? 'suggestion-item--active'
-                    : 'suggestion-item'
-                  // inline style for demonstration purpose
-                  const style = suggestion.active
-                    ? { backgroundColor: '#2a2f4a', cursor: 'pointer' }
-                    : { backgroundColor: '#242943', cursor: 'pointer' }
-                  return (
-                    <div
-                      {...getSuggestionItemProps(suggestion, {
-                        className,
-                        style,
-                      })}
-                    >
-                      <span>{suggestion.description}</span>
-                    </div>
-                  )
-                })}
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                    padding: 4,
-                  }}
-                >
-                  <div>
-                    <img
-                      src={require('../../assets/images/powered_by_google_inverse.png')}
-                      style={{ display: 'inline-block', width: 150 }}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
-      </PlacesAutocomplete>
-    )
+    return <LocationSearchInput asyncScriptOnLoad={this.initSearch} />
   }
 }
