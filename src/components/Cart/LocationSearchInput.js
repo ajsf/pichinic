@@ -6,7 +6,7 @@ const scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&librar
 
 const LocationSearchInput = () => {
   return (
-    <div Hmebru55>
+    <div>
       <div>
         <input id="pac-input" type="text" placeholder="Enter a location." />
       </div>

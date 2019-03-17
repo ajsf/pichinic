@@ -20,3 +20,23 @@ export const addFoodItem = food => {
     food,
   }
 }
+
+export const selectPickupDate = date => {
+  return {
+    type: actionTypes.SELECT_PICKUP_DATE,
+    date,
+  }
+}
+
+export const selectPickupTime = time => {
+  return {
+    type: actionTypes.SELECT_PICKUP_TIME,
+    time,
+  }
+}
+export const selectPickupLocation = location => {
+  return {
+    type: actionTypes.SELECT_PICKUP_DATE,
+    location,
+  }
+}

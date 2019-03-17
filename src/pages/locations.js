@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import Locations from '../components/ShoppingPages/Locations/Locations'
 import ShoppingPageComponent from '../components/ShoppingPages/ShoppingPageComponent'
 import { markdownQueryToObjects } from '../utils/ItemHelper'
-import products from '../products/productCategories'
 
 const LocationsPage = props => {
   console.log(props)

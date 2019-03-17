@@ -1,29 +1,26 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import ShoppingCartSectionContainer from './ShoppingCartSectionContainer'
+import * as actionCreators from '../../state/actions/actionCreators'
 
 class DateAndTimeComponent extends Component {
-  state = {
-    date: null,
-    time: null,
-  }
-
   handleDateChange = date => {
-    this.setState({ date, time: null })
+    this.props.selectDate(date)
   }
 
   handleTimeChange = time => {
-    const date = this.state.date
+    const date = this.props.date
     const newTime = moment(
       date.format('YYYY-MM-DD') + 'T' + time.format('HH:mm')
     )
-    this.setState({ date: newTime, time: newTime })
+    this.props.selectTime(newTime)
   }
 
   render() {
     const timePlaceholder =
-      this.state.date == null ? 'Please pick a date first.' : 'Pick a time.'
+      this.props.date == null ? 'Please pick a date first.' : 'Pick a time.'
     return (
       <ShoppingCartSectionContainer>
         <div style={{ marginBottom: 16 }}>
@@ -32,7 +29,7 @@ class DateAndTimeComponent extends Component {
             placeholderText="Pick a date."
             withPortal
             minDate={moment().add(36, 'hours')}
-            selected={this.state.date}
+            selected={this.props.date}
             onChange={this.handleDateChange}
           />
         </div>
@@ -40,9 +37,9 @@ class DateAndTimeComponent extends Component {
           <h4>Time</h4>
           <DatePicker
             onChange={this.handleTimeChange}
-            disabled={this.state.date === null}
+            disabled={this.props.date == null}
             placeholderText={timePlaceholder}
-            selected={this.state.time}
+            selected={this.props.time}
             withPortal
             showTimeSelect
             showTimeSelectOnly
@@ -60,4 +57,17 @@ class DateAndTimeComponent extends Component {
   }
 }
 
-export default DateAndTimeComponent
+const mapStateToProps = state => {
+  return { date: state.pickupDate, time: state.pickupTime }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    selectDate: date => dispatch(actionCreators.selectPickupDate(date)),
+    selectTime: time => dispatch(actionCreators.selectPickupTime(time)),
+  }
+}
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DateAndTimeComponent)

@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemsComponent from './itemsComponent'
 import { connect } from 'react-redux'
-import { Router, Link } from '@reach/router'
+import { Link } from '@reach/router'
 
 const MainCart = props => {
   const continueButton = props.ready ? (
